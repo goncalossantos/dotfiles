@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git and chezmoi do different jobs</title>
+<style>
+:root{color-scheme:light dark;--foreground:light-dark(#172433,#e5eef8);--card:light-dark(#f1f5f9,#1c2938);--border:light-dark(#b8c8d9,#526880);--primary:light-dark(#195d9c,#9accff);--radius:12px;--font-sans:system-ui,sans-serif}
+body{margin:0;font-family:var(--font-sans);color:var(--foreground);line-height:1.55}main{max-width:850px;margin:auto}h1{font-size:1.5rem}h2{font-size:1.1rem}.box,details{padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}.box strong{display:block}.arrow{text-align:center;padding:8px;color:var(--primary)}.fork{display:grid;grid-template-columns:1fr 1fr;gap:16px}details{margin:16px 0}summary{font-weight:650;cursor:pointer}a{color:var(--primary)}summary:focus-visible,a:focus-visible{outline:3px solid var(--primary);outline-offset:4px}.hint{border-left:3px solid var(--primary);padding-left:14px}@media(max-width:550px){.fork{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1>Keep Git. Choose how to deploy the files.</h1>
+<p><strong>Git remembers revisions and moves them between machines.</strong> It does not know where Pi, Claude Code, or Codex expects a configuration file. An installer or chezmoi does that second job.</p>
+<section aria-label="From GitHub to active agent configuration">
+<div class="box"><strong>GitHub repository</strong>History, branches, and the shared source of truth.</div>
+<div class="arrow">↓ git clone / git pull ↓</div>
+<div class="box"><strong>Your local checkout</strong>The same source can live under any permanent directory.</div>
+<div class="arrow">↓ choose one deployment method ↓</div>
+<div class="fork">
+<div class="box"><strong>Our small installer</strong><p>Preview seven links → refuse conflicts → link the approved files.</p><p>Best for this simple agent setup. Requires Python 3.9+.</p></div>
+<div class="box"><strong>chezmoi</strong><p>Render local data → compare desired state → review and apply.</p><p>Useful when files, permissions, or contents differ across machines.</p></div>
+</div>
+<div class="arrow">↓ both configure the same consumers ↓</div>
+<div class="box"><strong>Pi · Claude Code · Codex</strong>Personal instructions and whole skill directories in each client's supported locations.</div>
+</section>
+<p class="hint"><strong>Recommendation:</strong> use the installer now. Adopt chezmoi when machine differences justify it. Neither replaces Git, and neither should overwrite unfamiliar configuration without review.</p>
+<details><summary>What does a chezmoi template actually do?</summary>
+<p>The source name <code>dot_claude/symlink_CLAUDE.md.tmpl</code> tells chezmoi to create <code>~/.claude/CLAUDE.md</code> as a symlink. The template inserts the local checkout path. The same Git source can therefore work when one machine uses <code>~/src/dotfiles</code> and another uses <code>/srv/config/dotfiles</code>.</p>
+<p>This prototype uses symlinks, so the checkout must remain in place. chezmoi can also deploy regular files instead of links.</p>
+</details>
+<details><summary>What did we test?</summary>
+<p>On Linux/NixOS, nine Python installer tests and one real chezmoi 2.70.3 integration test passed. The tests used temporary homes. They covered dry runs, valid links, repeated apply, collision protection, arbitrary checkout paths, and removal or drift detection.</p>
+<p>No authenticated agent session, macOS deployment, encryption, or secret-manager integration was tested. The seven-link chezmoi recipe is a working prototype, not a full dotfiles migration.</p>
+</details>
+<details><summary>Check: if you only run git pull, are the clients configured?</summary>
+<p>Not on a new machine. You still need deployment into the clients' expected paths. On a machine already using our symlinks, pulled source edits become visible through those links; the clients may still need a reload or restart.</p>
+</details>
+<p><strong>Next:</strong> review the dry run in <a href="../SETUP.md">the setup guide</a>.</p>
+<p>Sources: <a href="https://www.chezmoi.io/quick-start/">chezmoi quick start</a> and <a href="https://www.chezmoi.io/why-use-chezmoi/">why use chezmoi</a>. Research snapshot: 2026-11-01. <a href="../research/chezmoi.md">Full evaluation and test limits</a>.</p>
+</main>
+</body>
+</html>

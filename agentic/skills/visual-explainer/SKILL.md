@@ -111,7 +111,9 @@ a scene-by-scene storyboard: learning goal, visual, narration, duration, and ass
 source. Keep exact diagrams and text deterministic. Use generated clips for
 illustration, not as evidence that a technical process works.
 
-Consult `../../research/explainer-video-services.md`. Confirm live pricing, upload
+If this skill directory is a symlink, resolve its real path before following
+relative resource paths. Consult `../../research/explainer-video-services.md` from
+that canonical skill directory. Confirm live pricing, upload
 permission, provider, and maximum spend before any paid or external generation.
 Include retries, narration, composition, and rendering in the estimate. Never let
 an automatic retry silently exceed the cap. Preserve captions and a transcript.
