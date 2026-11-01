@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From a concept to a visual explanation</title>
+<style>
+:root{color-scheme:light dark;--foreground:light-dark(#182331,#e6edf5);--card:light-dark(#f1f4f8,#1b2635);--border:light-dark(#b9c5d3,#506078);--primary:light-dark(#195d9c,#9acbff);--radius:12px;--font-sans:system-ui,sans-serif}
+body{margin:0;color:var(--foreground);font-family:var(--font-sans);line-height:1.55}h1{font-size:1.4rem}h2{font-size:1.05rem;margin-top:0}p{max-width:68ch}a{color:var(--primary)}.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:20px 0}.node,details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px}.node strong{display:block}.node span{font-size:.9rem}.arrow{text-align:center;color:var(--primary)}details{margin:12px 0}summary{cursor:pointer;font-weight:650}summary:focus-visible,a:focus-visible{outline:3px solid var(--primary);outline-offset:4px}.note{border-left:3px solid var(--primary);padding-left:14px}@media(max-width:540px){.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<main>
+<h1>Start with the diagram. Make video optional.</h1>
+<p>A good explanation builds a mental model first. HTML lets the reader inspect that model at their own pace. Video adds timing and narration when those help.</p>
+<section aria-label="Explanation workflow">
+<div class="flow">
+<div class="node"><strong>1 · Understand</strong><span>One question, one concrete example.</span></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="node"><strong>2 · Show</strong><span>Exact HTML diagrams, with optional detail.</span></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div class="node"><strong>3 · Narrate, if useful</strong><span>Storyboard → approval → video.</span></div>
+</div>
+<p class="note"><strong>Example:</strong> To teach a cache, draw “request → cache → database.” Then show the different paths for a cache hit and a cache miss. A moving presenter is not needed to explain that relationship.</p>
+</section>
+<details><summary>Which tool serves which purpose?</summary>
+<p><strong>HTML:</strong> exact labels and interactive depth, with no video-generation fee.</p>
+<p><strong>JSON2Video:</strong> official MCP for composing scenes into a narrated video. Prepare exact diagrams as assets.</p>
+<p><strong>fal:</strong> official MCP for generating illustrative clips. Generated text and arrows may be unreliable.</p>
+<p>Use generated footage for illustration, not proof. See <a href="../research/explainer-video-services.md">the service research</a> for sources, prices, and unresolved questions.</p>
+</details>
+<details><summary>Check your understanding: what should stay exact?</summary>
+<p>In a networking lesson, should a generative video model draw the packet labels?</p>
+<details><summary>Reveal the answer</summary><p>No. Keep labels, arrows, and state changes in deterministic diagrams. Generate optional background footage separately.</p></details>
+</details>
+<p><strong>Next:</strong> Choose one real concept to explain with this format.</p>
+</main>
+</body>
+</html>
