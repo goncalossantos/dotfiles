@@ -1,0 +1,19 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+line-number = "relative"
+mouse = false
+shell = ["zsh", "-c"]
+bufferline = "always"
+color-modes = true
+rulers = [100]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.auto-save]
+after-delay.enable = true
+focus-lost = true
+after-delay.timeout = 5000
