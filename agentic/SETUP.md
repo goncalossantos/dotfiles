@@ -46,9 +46,9 @@ its source using its own location, not the current working directory. Do not use
 an ephemeral `/tmp` checkout for a real installation: links depend on the checkout
 remaining in place and readable by the target user.
 
-**Publication status:** the earlier push returned GitHub 403. These setup changes
-are local until committed and successfully pushed. A clone of the current remote
-`develop` branch will not contain them. Use the existing local checkout for testing.
+**Branch:** the agent setup is published on `main`. Clone that branch explicitly:
+the repository's default branch may still be `develop`, which does not contain
+this setup.
 
 Review the source before applying:
 
